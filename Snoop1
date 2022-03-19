@@ -1,0 +1,21 @@
+if (!expand_icon) {
+		Ref<Texture2D> _icon;
+		if (icon.is_null() && has_theme_icon(SNAME("icon"))) {
+			_icon = Control::get_theme_icon(SNAME("icon"));
+		} else {
+			_icon = icon;
+		}
+
+		if (!_icon.is_null()) {
+			minsize.height = MAX(minsize.height, _icon->get_height());
+
+			if (icon_alignment != HORIZONTAL_ALIGNMENT_CENTER) {
+				minsize.width += _icon->get_width();
+				if (!xl_text.is_empty()) {
+					minsize.width += get_theme_constant(SNAME("hseparation"));
+				}
+			} else {
+				minsize.width = MAX(minsize.width, _icon->get_width());
+			}
+		}
+	}
